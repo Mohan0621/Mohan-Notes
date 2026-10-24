@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { Stage, Layer, Circle, Shape, Rect } from 'react-konva'
 import type { KonvaEventObject } from 'konva/lib/Node'
-import type Konva from 'konva'
+import Konva from 'konva'
+
+// Clamp pixelRatio to max 2 to prevent GPU fill-rate throttling on 4K/high-DPI monitors
+if (typeof window !== 'undefined') {
+  Konva.pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
+}
 import {
   useAppStore,
   type Page,
@@ -816,6 +821,9 @@ function SinglePageCard({
     return (
       <Shape
         key={id}
+        perfectDrawEnabled={false}
+        shadowForStrokeEnabled={false}
+        transformsEnabled="position"
         sceneFunc={(context) => {
           if (!points || points.length === 0) return
           const ctx = context._context as CanvasRenderingContext2D
@@ -1033,13 +1041,20 @@ function SinglePageCard({
           onPointerCancel={finishDrawing}
           onPointerLeave={() => setCursorPos(null)}
         >
-          <Layer>
+          {/* Static Layer: Completed objects (does NOT re-render during live inking) */}
+          <Layer listening={false}>
             {displayObjects.map(renderObj)}
+          </Layer>
+
+          {/* Active Layer: Live inking preview, lasso loop, and laser/cursor indicators */}
+          <Layer listening={false}>
             {renderPreview()}
 
             {/* Lasso polygon */}
             {lassoPoints.length >= 4 && (
               <Shape
+                perfectDrawEnabled={false}
+                shadowForStrokeEnabled={false}
                 sceneFunc={(context, shape) => {
                   context.beginPath()
                   context.moveTo(lassoPoints[0], lassoPoints[1])

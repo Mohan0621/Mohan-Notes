@@ -35,6 +35,7 @@ export function getDb(): import('better-sqlite3').Database {
 
   _db = new Database(dbPath) as import('better-sqlite3').Database
   _db.pragma('journal_mode = WAL')
+  _db.pragma('synchronous = NORMAL')
   _db.pragma('foreign_keys = ON')
 
   _db.exec(`
@@ -61,6 +62,9 @@ export function getDb(): import('better-sqlite3').Database {
       updatedAt TEXT NOT NULL DEFAULT (datetime('now')),
       UNIQUE(pageId)
     );
+
+    CREATE INDEX IF NOT EXISTS idx_pages_notebook ON pages(notebookId, "order");
+    CREATE INDEX IF NOT EXISTS idx_strokes_page ON strokes(pageId);
   `)
 
   return _db

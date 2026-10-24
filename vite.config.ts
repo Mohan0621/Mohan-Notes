@@ -23,6 +23,17 @@ export default defineConfig({
       renderer: process.env.NODE_ENV === 'test' ? undefined : {},
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-canvas': ['konva', 'react-konva', 'perfect-freehand'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1200,
+  },
   test: {
     environment: 'node',
   },

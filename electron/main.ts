@@ -104,11 +104,14 @@ ipcMain.handle('page:export', async (_e, pageId: number, dataUrl: string) => {
 
 handle('app:version', () => app.getVersion())
 
-// ─── Stylus & Pointer Event Flags ───────────────────────────────────────────
+// ─── Stylus & GPU Acceleration Flags ─────────────────────────────────────────
 app.commandLine.appendSwitch('enable-pointer-events')
 app.commandLine.appendSwitch('high-dpi-support', '1')
 app.commandLine.appendSwitch('enable-experimental-web-platform-features')
 app.commandLine.appendSwitch('touch-events', 'enabled')
+app.commandLine.appendSwitch('enable-gpu-rasterization')
+app.commandLine.appendSwitch('enable-zero-copy')
+app.commandLine.appendSwitch('disable-renderer-backgrounding')
 
 // ─── App lifecycle ────────────────────────────────────────────────────────────
 
