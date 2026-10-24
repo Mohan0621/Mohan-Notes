@@ -1,0 +1,292 @@
+.gn-floating-dock-container {
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.gn-floating-pill {
+  pointer-events: auto;
+  background: rgba(24, 24, 30, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+  gap: 4px;
+  user-select: none;
+}
+
+/* Undo / Redo Top Pill */
+.gn-undo-redo-pill {
+  flex-direction: row;
+  border-radius: 20px;
+  padding: 4px 6px;
+  gap: 2px;
+}
+
+.gn-dock-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cdd6f4;
+  transition: all 0.15s ease;
+}
+
+.gn-dock-icon-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.gn-dock-icon-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* Vertical Tools Dock */
+.gn-tools-vertical-dock {
+  width: 44px;
+  padding: 8px 4px;
+  gap: 6px;
+}
+
+.gn-dock-tool-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.gn-dock-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.gn-dock-tool-btn.active {
+  background: #0ea5e9;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(14, 165, 233, 0.5);
+}
+
+.gn-dock-sep {
+  width: 24px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 4px 0;
+}
+
+/* Thickness preset horizontal bars */
+.gn-dock-thickness-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.gn-dock-thickness-btn {
+  width: 32px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  transition: all 0.15s;
+}
+
+.gn-dock-thickness-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.gn-dock-thickness-btn.active {
+  background: rgba(14, 165, 233, 0.25);
+  border: 1px solid #0ea5e9;
+}
+
+.gn-dock-thickness-bar {
+  width: 20px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.gn-dock-thickness-btn.active .gn-dock-thickness-bar {
+  background: #0ea5e9;
+}
+
+/* Colors list */
+.gn-dock-colors-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.gn-dock-color-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gn-dock-color-btn:hover {
+  transform: scale(1.18);
+}
+
+.gn-dock-color-btn.active {
+  transform: scale(1.22);
+  box-shadow: 0 0 0 2px rgba(24, 24, 30, 0.9), 0 0 0 4px #0ea5e9;
+}
+
+/* Color Wheel */
+.gn-color-wheel-wrapper {
+  position: relative;
+}
+
+.gn-dock-wheel-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  transition: all 0.15s;
+}
+
+.gn-dock-wheel-btn:hover {
+  color: #ffffff;
+  border-color: #0ea5e9;
+  background: rgba(14, 165, 233, 0.15);
+}
+
+.gn-dock-color-popover {
+  position: absolute;
+  left: calc(100% + 14px);
+  bottom: 0;
+  background: rgba(24, 24, 30, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* ─── Shape Picker Popover in Dock ────────────────────────────────────────── */
+.gn-dock-menu-anchor {
+  position: relative;
+}
+
+.gn-dock-sub-dot {
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.gn-dock-shape-popover {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: -20px;
+  background: rgba(24, 24, 30, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  min-width: 170px;
+  animation: gnFadeScale 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gn-dock-popover-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.gn-dock-shapes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.gn-dock-shape-opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cdd6f4;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gn-dock-shape-opt:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.gn-dock-shape-opt.active {
+  background: #0ea5e9;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+}
+
+.gn-dock-shape-glyph {
+  font-size: 14px;
+  width: 16px;
+  display: inline-block;
+  text-align: center;
+}
+
+.gn-dock-shape-text {
+  font-size: 12px;
+}
+
+@keyframes gnFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
