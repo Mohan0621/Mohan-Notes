@@ -9,7 +9,10 @@
   },
   "files": ["dist", "dist-electron"],
   "win": {
-    "target": [{ "target": "dir", "arch": ["x64"] }],
+    "target": [
+      { "target": "portable", "arch": ["x64"] },
+      { "target": "dir", "arch": ["x64"] }
+    ],
     "signAndEditExecutable": false
   },
   "nsis": {
